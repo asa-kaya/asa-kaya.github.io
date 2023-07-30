@@ -4,7 +4,7 @@ import { faPlay, faVideo } from "@fortawesome/free-solid-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 import games from './data/games';
-import profileImage from './profile-image.jpg';
+import profileImage from './profile-image.png';
 
 import IconLink from './components/IconLink';
 import './App.css';
@@ -33,7 +33,7 @@ function App() {
         <h1 className="text-7xl">Hi,</h1>
         <div className="flex flex-col md:flex-row items-center">
           <h2 className="text-5xl max-w-4xl">I am <span className="font-semibold">Junrick Bation</span>, a developer who loves making games and learning new things.</h2>
-          <img src={profileImage} className="rounded-full m-12"/>
+          <img src={profileImage} className="rounded-full m-12 w-3/6"/>
         </div>
         <div className="flex flex-row">
           <a href="#skills" className="mx-4">SKILLS</a>
