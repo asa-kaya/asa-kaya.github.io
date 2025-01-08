@@ -4,7 +4,7 @@ import { faPlay, faVideo } from "@fortawesome/free-solid-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 import games from './data/games';
-import profileImage from './profile-image.png';
+import profileImage from './profile-image.jpg';
 
 import IconLink from './components/IconLink';
 import './App.css';
