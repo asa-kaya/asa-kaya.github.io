@@ -32,7 +32,7 @@ function App() {
       <header className="App-header">
         <h1 className="text-7xl">Hi,</h1>
         <div className="flex flex-col md:flex-row items-center">
-          <h2 className="text-5xl max-w-4xl">I am <span className="font-semibold">Junrick Bation</span>, a developer who loves making games and learning new things.</h2>
+          <h2 className="text-5xl max-w-4xl">I am <span className="font-semibold">Junrick</span>, a developer who loves making games and learning new things.</h2>
           <img src={profileImage} className="rounded-full m-12 w-3/6"/>
         </div>
         <div className="flex flex-row">
