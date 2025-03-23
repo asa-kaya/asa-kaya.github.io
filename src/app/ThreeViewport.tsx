@@ -2,8 +2,9 @@
 import React, { useRef, useState } from 'react';
 import { Canvas, useLoader, useThree } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import { Color, ColorRepresentation, Mesh } from 'three';
+import { Color, ColorRepresentation, Mesh, Vector3, Euler } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { HoverableObjectProps } from './common/types';
 import HelperText from './HelperText';
 
 const colorInteractable = 0xffd921;
@@ -23,7 +24,7 @@ const UpdateSceneBackground = () => {
     return <></>;
 };
 
-const Bike = (props) => {
+const Bike = (props: HoverableObjectProps) => {
     const { nodes, materials } = useLoader(GLTFLoader, '/assets/bike.glb');
     const [isHovered, setHover] = useState<Boolean | undefined>(false);
 
@@ -78,7 +79,7 @@ const Bike = (props) => {
     );
 };
 
-const Letter = (props) => {
+const Letter = (props: HoverableObjectProps) => {
     const { nodes, materials } = useLoader(GLTFLoader, '/assets/letter.glb');
     const [isHovered, setHover] = useState<Boolean | undefined>(false);
 
@@ -104,7 +105,7 @@ const Letter = (props) => {
     );
 };
 
-const Poster = (props) => {
+const Poster = (props: HoverableObjectProps) => {
     const { nodes, materials } = useLoader(GLTFLoader, '/assets/poster.glb');
     const [isHovered, setHover] = useState<Boolean | undefined>(false);
 
@@ -177,10 +178,16 @@ export default function ThreeViewport() {
             <Letter onHover={(active: Boolean) => updateHeaderAndDescription(active, "Credits", "Inspirations for this website")} />
             <UpdateSceneBackground />
 
-            <HelperText position={[0, 0, 1.25]} rotation={[-Math.PI/2, 0, 0]} scale={0.5}>
+            <HelperText
+                position={new Vector3(0, 0, 1.25)}
+                rotation={new Euler(-Math.PI/2, 0, 0)}
+                scale={new Vector3(0.5, 0.5, 0.5)}>
                 {header}
             </HelperText>
-            <HelperText position={[1.25, 0, 0.1]} rotation={[-Math.PI/2, 0, Math.PI/2]} scale={0.220}>
+            <HelperText
+                position={new Vector3(1.25, 0, 0.1)}
+                rotation={new Euler(-Math.PI/2, 0, Math.PI/2)}
+                scale={new Vector3(0.22, 0.22, 0.22)}>
                 {description}
             </HelperText>
 

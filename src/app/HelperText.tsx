@@ -1,14 +1,12 @@
 'use client';
-import React, { useState } from 'react';
-import { Canvas, useLoader, useThree } from '@react-three/fiber';
-import { OrbitControls, Text, Billboard } from '@react-three/drei';
-import { Color, Mesh } from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import React from 'react';
+import { Text } from '@react-three/drei';
+import { Text3DProps } from './common/types';
 
-export default function HelperText({children, ...props}) {
+export default function HelperText({children, position, rotation, scale}: Text3DProps) {
     return (
-            <Text {...props}>
-                {children}
-            </Text>
+        <Text position={position} rotation={rotation} scale={scale}>
+            {children}
+        </Text>
     );
 }
