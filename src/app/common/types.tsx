@@ -18,6 +18,7 @@ export interface IHover {
 }
 
 export interface HoverableObjectProps {
+    modelPath: string,
     children?: ReactNode,
     position?: number[],
     rotation?: number[],
