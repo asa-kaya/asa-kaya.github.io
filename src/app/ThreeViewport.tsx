@@ -33,7 +33,6 @@ const Room = () => {
 
     const stage = nodes.Stage as THREE.Mesh;
 
-
     return (
         <mesh
             position={stage.position}
