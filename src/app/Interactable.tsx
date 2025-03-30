@@ -2,10 +2,9 @@ import { useLoader } from "@react-three/fiber";
 import { HoverableObjectProps } from "./common/types";
 import { useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { Mesh } from "three";
 
-const colorInteractable = 0xffd921;
-const colorHovered = 0x1bde00;
+const colorInteractable = 0x3e81d9;
+const colorHovered = 0xffd921;
 
 type HoverEvent = (a: Boolean) => void;
 
@@ -38,7 +37,7 @@ const Interactable = (props: HoverableObjectProps) => {
                     onPointerOver={(_: Event) => hoverFunc(true)}
                     onPointerOut={(_: Event) => hoverFunc(false)}
                 >
-                    <meshStandardMaterial
+                    <meshBasicMaterial
                         color={isHovered ? colorHovered : colorInteractable}
                     />
                 </mesh>);
