@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Canvas3D from './ThreeViewport';
+import Canvas3D from './3d-elements/Viewport3D';
 
 export default function Home() {
     return (

@@ -1,5 +1,5 @@
 import { useLoader } from "@react-three/fiber";
-import { HoverableObjectProps } from "./common/types";
+import { InteractableObjectProps } from "../common/types";
 import { useState } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
@@ -8,7 +8,7 @@ const colorHovered = 0xffd921;
 
 type HoverEvent = (a: Boolean) => void;
 
-const Interactable = (props: HoverableObjectProps) => {
+const Interactable = (props: InteractableObjectProps) => {
     const { nodes, materials } = useLoader(GLTFLoader, props.modelPath || "");
     const [isHovered, setHover] = useState<Boolean | undefined>(false);
     const meshes = [];
@@ -25,7 +25,11 @@ const Interactable = (props: HoverableObjectProps) => {
     }
 
     return (
-        <>
+        <group
+            onPointerOver={(_: Event) => hoverFunc(true)}
+            onPointerOut={(_: Event) => hoverFunc(false)}
+            onClick={props.onClick}
+        >
             { meshes.map((mesh: any) => {
                 return (
                 <mesh
@@ -34,15 +38,13 @@ const Interactable = (props: HoverableObjectProps) => {
                     position={mesh.position}
                     rotation={mesh.rotation}
                     scale={mesh.scale}
-                    onPointerOver={(_: Event) => hoverFunc(true)}
-                    onPointerOut={(_: Event) => hoverFunc(false)}
                 >
                     <meshBasicMaterial
                         color={isHovered ? colorHovered : colorInteractable}
                     />
                 </mesh>);
             }) }
-        </>
+        </group>
     );
 };
 

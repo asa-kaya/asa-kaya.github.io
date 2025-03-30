@@ -1,17 +1,16 @@
 'use client';
-import React, { useRef, useState } from 'react';
-import { Canvas, useLoader, useThree } from '@react-three/fiber';
+import React, { createRef, useRef, useState } from 'react';
+import { Canvas, useLoader, useThree, ThreeEvent } from '@react-three/fiber';
 import { OrbitControls, useTexture } from '@react-three/drei';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import HelperText from './HelperText';
 import Interactable from './Interactable';
+import ModalDiv from '../modal-div/ModalDiv';
 
 const colorBackground = 0x5c5c5c;
 const defaultHeader = "JUNRICK";
 const defaultDescription = "Game & Web Development";
-
-type HoverEvent = (a: Boolean) => void;
 
 const UpdateSceneBackground = () => {
     const { scene } = useThree();
@@ -46,9 +45,11 @@ const Room = () => {
     );
 };
 
-export default function ThreeViewport() {
+export default function Viewport3D() {
     const [header, setHeader] = useState<string | undefined>(defaultHeader);
     const [description, setDescription] = useState<string | undefined>(defaultDescription);
+
+    const divRef = createRef<ModalDiv>();
 
     const updateHeaderAndDescription = (active: Boolean, h: string, d: string) => {
         setHeader(active ? h : defaultHeader);
@@ -56,19 +57,24 @@ export default function ThreeViewport() {
     };
 
     return (
+        <>
         <Canvas flat linear camera={{ position: [5, 6, 5], fov: 30 }}>
             <Room />
             <Interactable
                 modelPath="/assets/bike.glb"
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "Projects", "See my personal works")}
+                onClick={(e) => divRef.current?.setHidden(false)}
+                
             />
             <Interactable
                 modelPath="/assets/poster.glb"
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "About Me", "Skills | Experience | Contact")}
+                onClick={(e) => divRef.current?.setHidden(false)}
             />
             <Interactable
                 modelPath="/assets/letter.glb"
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "Credits", "Inspirations for this website")}
+                onClick={(e) => divRef.current?.setHidden(false)}
             />
             <UpdateSceneBackground />
 
@@ -97,5 +103,7 @@ export default function ThreeViewport() {
                 maxAzimuthAngle={Math.PI / 2}
             />
         </Canvas>
+        <ModalDiv ref={divRef} />
+        </>
     );
 }

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Text } from '@react-three/drei';
-import { Text3DProps } from './common/types';
+import { Text3DProps } from '../common/types';
 
 export default function HelperText({children, position, rotation, scale}: Text3DProps) {
     return (

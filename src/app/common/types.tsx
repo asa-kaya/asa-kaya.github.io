@@ -1,10 +1,5 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Vector3, Euler } from "three";
-
-
-export interface Props {
-    children?: ReactNode
-}
 
 export interface Text3DProps {
     children?: ReactNode,
@@ -13,15 +8,12 @@ export interface Text3DProps {
     scale?: Vector3,
 }
 
-export interface IHover {
-    (hovered: Boolean): void
-}
-
-export interface HoverableObjectProps {
+export interface InteractableObjectProps {
     modelPath: string,
     children?: ReactNode,
     position?: number[],
     rotation?: number[],
     scale?: number[],
-    onHover: IHover
+    onHover: (hovered: Boolean) => void,
+    onClick: (e: React.MouseEvent<HTMLElement>) => void
 }
