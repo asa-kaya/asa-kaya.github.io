@@ -6,7 +6,9 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import HelperText from './HelperText';
 import Interactable from './Interactable';
-import ModalDiv from '../modal-div/ModalDiv';
+import ProjectsModal from '../modal-div/ProjectsModal';
+import AboutModal from '../modal-div/AboutModal';
+import CreditsModal from '../modal-div/CreditsModal';
 
 const colorBackground = 0x5c5c5c;
 const defaultHeader = "JUNRICK";
@@ -49,7 +51,9 @@ export default function Viewport3D() {
     const [header, setHeader] = useState<string | undefined>(defaultHeader);
     const [description, setDescription] = useState<string | undefined>(defaultDescription);
 
-    const divRef = createRef<ModalDiv>();
+    const projectsDivRef = createRef<ProjectsModal>();
+    const aboutDivRef = createRef<AboutModal>();
+    const creditsDivRef = createRef<CreditsModal>();
 
     const updateHeaderAndDescription = (active: Boolean, h: string, d: string) => {
         setHeader(active ? h : defaultHeader);
@@ -63,18 +67,18 @@ export default function Viewport3D() {
             <Interactable
                 modelPath="/assets/bike.glb"
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "Projects", "See my personal works")}
-                onClick={(e) => divRef.current?.setHidden(false)}
+                onClick={(e) => projectsDivRef.current?.setHidden(false)}
                 
             />
             <Interactable
                 modelPath="/assets/poster.glb"
-                onHover={(active: Boolean) => updateHeaderAndDescription(active, "About Me", "Skills | Experience | Contact")}
-                onClick={(e) => divRef.current?.setHidden(false)}
+                onHover={(active: Boolean) => updateHeaderAndDescription(active, "About", "Skills | Experience | Contact")}
+                onClick={(e) => aboutDivRef.current?.setHidden(false)}
             />
             <Interactable
                 modelPath="/assets/letter.glb"
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "Credits", "Inspirations for this website")}
-                onClick={(e) => divRef.current?.setHidden(false)}
+                onClick={(e) => creditsDivRef.current?.setHidden(false)}
             />
             <UpdateSceneBackground />
 
@@ -83,7 +87,7 @@ export default function Viewport3D() {
                 rotation={new THREE.Euler(-Math.PI/2, 0, 0)}
                 scale={new THREE.Vector3(0.5, 0.5, 0.5)}
             >
-                {header}
+                {header?.toUpperCase()}
             </HelperText>
             <HelperText
                 position={new THREE.Vector3(1.25, 0, 0.1)}
@@ -103,7 +107,9 @@ export default function Viewport3D() {
                 maxAzimuthAngle={Math.PI / 2}
             />
         </Canvas>
-        <ModalDiv ref={divRef} />
+        <ProjectsModal ref={projectsDivRef} />
+        <AboutModal ref={aboutDivRef} />
+        <CreditsModal ref={creditsDivRef} />
         </>
     );
 }

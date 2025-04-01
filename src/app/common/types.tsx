@@ -17,3 +17,8 @@ export interface InteractableObjectProps {
     onHover: (hovered: Boolean) => void,
     onClick: (e: React.MouseEvent<HTMLElement>) => void
 }
+
+export interface Person {
+    name: string,
+    contact?: string
+}
