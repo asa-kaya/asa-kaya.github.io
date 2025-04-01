@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 const colorInteractable = 0x3e81d9;
 const colorHovered = 0xffd921;
 
-type HoverEvent = (a: Boolean) => void;
+type HoverEvent = (value: Boolean) => void;
 
 const Interactable = (props: InteractableObjectProps) => {
     const { nodes, materials } = useLoader(GLTFLoader, props.modelPath || "");
@@ -19,9 +19,10 @@ const Interactable = (props: InteractableObjectProps) => {
         meshes.push(nodes[key]);
     }
 
-    const hoverFunc: HoverEvent = (a: Boolean) => {
-        setHover(a);
-        props.onHover(a);
+    const hoverFunc: HoverEvent = (value: Boolean) => {
+        setHover(value);
+        props.onHover(value);
+        document.body.style.cursor = value ? "pointer" : "auto";
     }
 
     return (

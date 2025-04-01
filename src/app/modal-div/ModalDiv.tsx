@@ -24,7 +24,7 @@ export default class ModalDiv extends React.Component<ModalDivProps, { hidden: b
                 <div className="flex min-h-full items-stretch justify-center text-center md:items-center md:px-2 lg:px-4">
                     <div className={`flex w-full transform text-left text-base transition ease-out duration-300 ${this.state.hidden ? "opacity-0 translate-y-4 md:translate-y-0 md:scale-95" : "opacity-100 translate-y-0 md:scale-100"} md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl`}>
                         <div className="relative flex w-full items-center overflow-hidden bg-neutral-900 px-4 pt-14 pb-8 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">
-                            <button type="button" className="absolute top-8 right-6 text-gray-200 hover:text-red-800 md:top-4 md:right-4 lg:top-4 lg:right-4"
+                            <button type="button" className="absolute top-8 right-6 text-gray-200 cursor-pointer hover:text-red-800 md:top-4 md:right-4 lg:top-4 lg:right-4"
                                 onClick={_ => this.setHidden(true)}
                             >
                                 <span className="sr-only">Close</span>
