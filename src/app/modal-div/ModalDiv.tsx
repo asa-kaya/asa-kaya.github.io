@@ -35,7 +35,7 @@ export default class ModalDiv extends React.Component<ModalDivProps, { hidden: b
 
                             <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
                                 <div className="col-span-12">
-                                    <h2 className="text-3xl font-bold text-gray-200 sm:pr-12">
+                                    <h2 className="text-3xl font-bold text-yellow-500 sm:pr-12">
                                         { this.props.title ?? "Coming Soon" }
                                     </h2>
                                     <div className="pt-6">
