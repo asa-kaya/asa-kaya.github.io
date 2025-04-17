@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import { Vector3, Euler } from "three";
+import { Technology } from "./technologies";
 
 export interface Text3DProps {
     children?: ReactNode,
