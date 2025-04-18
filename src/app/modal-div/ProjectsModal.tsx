@@ -2,7 +2,7 @@ import React, { createRef } from "react";
 import ModalDiv from "./ModalDiv";
 import * as PROJECTS from '../common/projects'
 
-export default class ProjectsModal extends React.Component<{}, { activeTab: number }> {
+export default class ProjectsModal extends React.Component<{ onClose?: () => void }, { activeTab: number }> {
     
     divRef = createRef<ModalDiv>();
 
@@ -21,7 +21,7 @@ export default class ProjectsModal extends React.Component<{}, { activeTab: numb
     }
 
     render = () => (
-        <ModalDiv title="Projects" ref={ this.divRef }>
+        <ModalDiv title="Projects" ref={ this.divRef } onClose={this.props.onClose}>
             <div className="grid grid-flow-row grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-6">
                     { PROJECTS.projects
                         .filter(project => project.type === this.state.activeTab as PROJECTS.ProjectType).map(project => {

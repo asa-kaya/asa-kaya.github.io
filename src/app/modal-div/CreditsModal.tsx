@@ -8,7 +8,7 @@ interface Credits {
     "Inspriations": Person[];
 }
 
-export default class CreditsModal extends React.Component {
+export default class CreditsModal extends React.Component<{ onClose?: () => void }, {}> {
     
     divRef = createRef<ModalDiv>();
 
@@ -33,7 +33,7 @@ export default class CreditsModal extends React.Component {
     setHidden = (value: boolean) => this.divRef.current?.setHidden(value);
 
     render = () => (
-        <ModalDiv title="" ref={ this.divRef }>
+        <ModalDiv title="" ref={ this.divRef } onClose={this.props.onClose}>
             <div className="pb-6 px-6">
                 <ul role="list" className="px-6 lg:px-24 divide-y divide-dashed divide-gray-400">
                     { Object.keys(this.credits).map((key) => (

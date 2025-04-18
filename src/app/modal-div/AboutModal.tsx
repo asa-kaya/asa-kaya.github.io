@@ -2,7 +2,7 @@ import React, { createRef } from "react";
 import ModalDiv from "./ModalDiv";
 import * as TB from "../components/TechBadge";
 
-export default class AboutModal extends React.Component<{}, { activeTab: number }> {
+export default class AboutModal extends React.Component<{ onClose?: () => void }, { activeTab: number }> {
     
     divRef = createRef<ModalDiv>();
 
@@ -21,7 +21,7 @@ export default class AboutModal extends React.Component<{}, { activeTab: number 
     }
 
     render = () => (
-        <ModalDiv title="About Me" ref={ this.divRef }>
+        <ModalDiv title="About Me" ref={ this.divRef } onClose={this.props.onClose}>
             <div className="grid px-6">
                 <div className={`w-auto ${this.state.activeTab === 0 ? '' : 'hidden'}`}>
                     <h1 className="text-4xl pb-4">Hi,</h1>

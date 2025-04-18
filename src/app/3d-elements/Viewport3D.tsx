@@ -9,6 +9,7 @@ import Interactable from './Interactable';
 import ProjectsModal from '../modal-div/ProjectsModal';
 import AboutModal from '../modal-div/AboutModal';
 import CreditsModal from '../modal-div/CreditsModal';
+import ModalDiv from '../modal-div/ModalDiv';
 
 const colorBackground = 0x5c5c5c;
 const defaultHeader = "JUNRICK";
@@ -50,6 +51,7 @@ const Room = () => {
 export default function Viewport3D() {
     const [header, setHeader] = useState<string | undefined>(defaultHeader);
     const [description, setDescription] = useState<string | undefined>(defaultDescription);
+    const [activeModal, setActiveModal] = useState<ModalDiv | null>();
 
     const projectsDivRef = createRef<ProjectsModal>();
     const aboutDivRef = createRef<AboutModal>();
@@ -60,25 +62,42 @@ export default function Viewport3D() {
         setDescription(active ? d : defaultDescription);
     };
 
+    const openModal = (modal: ModalDiv | null) => {
+        if (!modal) return;
+
+        setActiveModal(modal);
+        modal.setHidden(false);
+    }
+
+    const closeModal = () => {
+        setActiveModal(null);
+    }
+
     return (
         <>
         <Canvas flat linear camera={{ position: [5, 6, 5], fov: 30 }}>
             <Room />
             <Interactable
                 modelPath="/assets/bike.glb"
+                tooltip="Projects"
+                hideTooltip={activeModal != null}
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "Projects", "See my personal works")}
-                onClick={(e) => projectsDivRef.current?.setHidden(false)}
+                onClick={(e) => openModal(projectsDivRef.current as unknown as ModalDiv)}
                 
             />
             <Interactable
-                modelPath="/assets/poster.glb"
+                modelPath="/assets/poster2.glb"
+                tooltip="About Me"
+                hideTooltip={activeModal != null}
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "About", "Skills | Experience | Contact")}
-                onClick={(e) => aboutDivRef.current?.setHidden(false)}
+                onClick={(e) => openModal(aboutDivRef.current as unknown as ModalDiv)}
             />
             <Interactable
                 modelPath="/assets/letter.glb"
+                tooltip="Credits"
+                hideTooltip={activeModal != null}
                 onHover={(active: Boolean) => updateHeaderAndDescription(active, "Credits", "Inspirations for this website")}
-                onClick={(e) => creditsDivRef.current?.setHidden(false)}
+                onClick={(e) => openModal(creditsDivRef.current as unknown as ModalDiv)}
             />
             <UpdateSceneBackground />
 
@@ -107,9 +126,9 @@ export default function Viewport3D() {
                 maxAzimuthAngle={Math.PI / 2}
             />
         </Canvas>
-        <ProjectsModal ref={projectsDivRef} />
-        <AboutModal ref={aboutDivRef} />
-        <CreditsModal ref={creditsDivRef} />
+        <ProjectsModal ref={projectsDivRef} onClose={closeModal} />
+        <AboutModal ref={aboutDivRef} onClose={closeModal} />
+        <CreditsModal ref={creditsDivRef} onClose={closeModal} />
         </>
     );
 }

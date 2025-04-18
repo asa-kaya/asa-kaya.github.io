@@ -15,6 +15,8 @@ export interface InteractableObjectProps {
     position?: number[],
     rotation?: number[],
     scale?: number[],
+    tooltip: string,
+    hideTooltip?: boolean,
     onHover: (hovered: Boolean) => void,
     onClick: (e: React.MouseEvent<HTMLElement>) => void
 }
