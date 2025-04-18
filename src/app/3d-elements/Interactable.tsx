@@ -60,8 +60,8 @@ const Interactable = (props: InteractableObjectProps) => {
                     />
                 </mesh>);
             }) }
-            <MobileView>
-                <Html className={`${props.hideTooltip ? "hidden" : ""}`} center={true}  position={billboardPosition}>
+            <Html className={`${props.hideTooltip ? "hidden" : ""}`} center={true}  position={billboardPosition}>
+                <MobileView>
                     <div className="flex flex-col items-center w-max"
                         onPointerOver={_ => hoverFunc(true)}
                         onPointerOut={(_) => hoverFunc(false)}
@@ -73,8 +73,8 @@ const Interactable = (props: InteractableObjectProps) => {
                         </svg>
                         <h1 className="font-semibold text-shadow-custom text-white">{props.tooltip}</h1>
                     </div>
-                </Html>
-            </MobileView>
+                </MobileView>
+            </Html>
         </group>
     );
 };
