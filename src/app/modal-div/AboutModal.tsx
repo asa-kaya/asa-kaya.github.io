@@ -22,7 +22,7 @@ export default class AboutModal extends React.Component<{ onClose?: () => void }
 
     render = () => (
         <ModalDiv title="About Me" ref={ this.divRef } onClose={this.props.onClose}>
-            <div className="grid px-6">
+            <div className="grid px-6 text-white">
                 <div className={`w-auto ${this.state.activeTab === 0 ? '' : 'hidden'}`}>
                     <h1 className="text-4xl pb-4">Hi,</h1>
                     <div className="flex flex-col md:flex-row items-center pb-4">
