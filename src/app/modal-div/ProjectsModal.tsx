@@ -22,7 +22,7 @@ export default class ProjectsModal extends React.Component<{ onClose?: () => voi
 
     render = () => (
         <ModalDiv title="Projects" ref={ this.divRef } onClose={this.props.onClose}>
-            <div className="grid grid-flow-row grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-6">
+            <div className="grid grid-flow-row grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 px-6">
                     { PROJECTS.projects
                         .filter(project => project.type === this.state.activeTab as PROJECTS.ProjectType).map(project => {
                             return (
